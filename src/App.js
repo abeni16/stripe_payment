@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import HomePage from "./componets/homepage";
+
+// Styles
+
+const stripePromise = loadStripe(
+  "pk_test_51KZt0mGYU4xyMzE4UnV4OM9X55xOHoO2itS45TASf1tNLIP1ekIfrtI14qZeH1WhbTBzyBoaRbFXv7cG6MAbbYS700AfNzh8ya"
+);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Elements stripe={stripePromise}>
+        <HomePage />
+      </Elements>
+    </>
   );
 }
 
